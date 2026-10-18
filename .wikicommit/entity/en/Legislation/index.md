@@ -7,3 +7,4 @@ comments: false
 ---
 
 - [[Legislation/artificial-intelligence-act]]
+- [[Legislation/executive-order-14110]]

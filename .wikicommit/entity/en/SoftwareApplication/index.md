@@ -6,4 +6,6 @@ review_status: reviewed
 comments: false
 ---
 
+- [[SoftwareApplication/american-fuzzy-lop]]
+- [[SoftwareApplication/oss-fuzz]]
 - [[SoftwareApplication/tay]]
