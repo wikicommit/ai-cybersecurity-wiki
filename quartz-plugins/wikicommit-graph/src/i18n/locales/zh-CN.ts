@@ -1,0 +1,27 @@
+export default {
+  components: {
+    graph: {
+      title: "关系图谱",
+      controls: {
+        lang: "语言",
+        type: "类型",
+        sources: "来源",
+        tags: "标签",
+        degree: "每个节点的链接数",
+        degreeMin: "最小",
+        degreeMax: "最大",
+        degreeNoBound: "0 = 不限",
+        labelLimit: "屏幕上的标签数",
+        labelLimitHint: "0 = 按缩放级别",
+        reset: "重置",
+        legend: "图例",
+        legendPages: "页面",
+        legendCurrent: "当前页面",
+        legendVisited: "已访问",
+        legendUnvisited: "未访问",
+        legendVisitedHint: "你在此浏览器中打开过的页面",
+        legendTagsAlways: "标签始终以此颜色绘制，无论你是否打开过",
+      },
+    },
+  },
+};
