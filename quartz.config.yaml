@@ -343,7 +343,8 @@ plugins:
       # no GitHub remote can be resolved it drops the entry instead, leaving an empty
       # mapping. Quartz's own attribution is rendered by the footer plugin itself and
       # is unaffected either way. Edit the URL here if the remote later changes.
-      links: {}
+      links:
+        GitHub: "https://github.com/wikicommit/ai-cybersecurity-wiki"
   - source: github:quartz-community/recent-notes
     enabled: false
   - source: github:quartz-community/spacer
