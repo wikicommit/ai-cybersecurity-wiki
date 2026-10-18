@@ -8,6 +8,8 @@ comments: false
 
 - [[DefinedTerm/adversarial-example]]
 - [[DefinedTerm/adversarial-machine-learning]]
+- [[DefinedTerm/ai-agent]]
+- [[DefinedTerm/audio-deepfake]]
 - [[DefinedTerm/data-poisoning]]
 - [[DefinedTerm/evasion-attack]]
 - [[DefinedTerm/intrusion-detection-system]]
