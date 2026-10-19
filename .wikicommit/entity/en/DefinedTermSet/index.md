@@ -6,4 +6,5 @@ review_status: reviewed
 comments: false
 ---
 
+- [[DefinedTermSet/mitre-attack]]
 - [[DefinedTermSet/owasp-top-10-for-llm-applications]]
