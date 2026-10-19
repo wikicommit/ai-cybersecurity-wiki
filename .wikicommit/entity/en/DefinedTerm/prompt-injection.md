@@ -12,9 +12,17 @@ sources:
     url: 'https://owasp.github.io/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf'
     hash: sha256:92cca25ec39d1565bc045171be6c1289167e0f91017bc7d2a9f71d16de9b8542
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://arxiv.org/html/2306.05499'
+    hash: sha256:8f833ac141d2d204394d6b155dc6b3d4aa5a3732bc5e0c54315a2f1e8795cb45
+    license: CC-BY-4.0
+  - type: url
+    url: 'https://arxiv.org/html/2311.11538'
+    hash: sha256:a4dfa5e01405e2c96ee077787e60a513010233ea029e9081ec88f79e7e18f8f0
+    license: CC-BY-4.0
 review_status: pending
 generated_at: "2026-10-19"
-generated_by: "claude-opus-5-5"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.11.0"
 
 properties:
@@ -45,6 +53,14 @@ Prompt injection has been fought with filters that block specific kinds of input
 ### Prompt leaking
 
 Prompt leaking is when a user uses a chat prompt to reveal the software's system prompt, which is typically kept secret. In 2022, for example, Twitter users tricked a spam account that was engaging with posts about remote working into revealing that it was an AI, and that its system prompt told it to respond "with a positive attitude towards remote working in the 'we' form".
+
+A study, [[ScholarlyArticle/assessing-prompt-injection-risks-in-200-custom-gpts|"Assessing Prompt Injection Risks in 200+ Custom GPTs"]] (Yu et al.), tested prompt leaking against custom GPTs — user-built versions of ChatGPT — together with file leakage, the theft of files a GPT's designer has uploaded. With simple adversarial prompts and up to three attempts each, its authors extracted the system prompt from 97.2% of the 216 custom GPTs they tested and the uploaded files in every case where files existed. In their red-teaming, defensive prompts telling a GPT not to reveal its instructions or files were bypassed by at least one expert in every setting, and a code interpreter made the attacks markedly easier; they conclude that defensive prompts alone are inadequate and recommend against putting confidential information in system prompts or uploaded files.
+
+## Against LLM-integrated applications
+
+The study [[ScholarlyArticle/prompt-injection-attack-against-llm-integrated-applications|"Prompt Injection attack against LLM-integrated Applications"]] (Liu et al.) examined prompt injection against commercial applications that wrap a user's input in prompts the provider has written in advance. Its authors group earlier attacks into three kinds: direct injection, which appends a malicious command to the user input; escape characters, such as a newline, injected to break the prompt; and context ignoring, a sentence telling the model to ignore what came before. In their pilot study these mostly failed against ten commercial applications, which the authors attribute to applications treating user input as data rather than as a question, enforcing input and output formats, and running multi-step processes with response time limits.
+
+To get past this, the authors propose HouYi, a black-box technique they model on SQL injection and cross-site scripting. It builds an injected prompt from a framework component that fits the application's normal flow, a separator component that cuts the pre-set context off from what follows, and a disruptor component carrying the attacker's objective, and refines them from the application's responses. They report that it succeeded against 31 of 36 applications, with ten vendors, including Notion, confirming the findings, and they identify two consequences: prompt leaking, which lets others copy an application from its exposed prompt, and prompt abuse, in which an attacker uses the provider's LLM at the provider's expense.
 
 ## How it differs from jailbreaking
 
@@ -110,3 +126,5 @@ Version 1.1 of the OWASP Top 10 for LLM Applications states that prompt injectio
 | Segregating external content | Separate and mark where untrusted content is used, to limit its influence on user prompts — for example ChatML for OpenAI API calls |
 | Trust boundaries | Treat the LLM as an untrusted user, keep final decisions with the user, and visually highlight potentially untrustworthy responses, since a compromised LLM may still sit between the application's APIs and the user |
 | Monitoring | Periodically check LLM input and output manually; this is not a mitigation but provides data for detecting and addressing weaknesses |
+
+Liu et al. state that there were no systematic techniques for preventing prompt injection in LLM-integrated applications, only empirically proposed strategies. They implemented six of them — instruction defence, post-prompting (placing the user's input before the prompt), random sequence enclosure, sandwich defence, XML tagging and separate LLM evaluation — and report that on manual inspection their HouYi technique could effectively circumvent these measures.

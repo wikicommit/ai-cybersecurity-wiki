@@ -8,9 +8,13 @@ sources:
     url: 'https://en.wikipedia.org/wiki/Adversarial_machine_learning'
     hash: sha256:24d3f298eb100b0505b7a94bb7ecab2083f7f68a31aa96a5d0773f49f0a6d8fe
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://arxiv.org/html/1312.6199'
+    hash: sha256:19c097fc0ccc983480effae4e8808ded3f0d72ead27863bb01028d13a27e1a75
+    license: CC-BY-3.0
 review_status: pending
-generated_at: "2026-10-18"
-generated_by: "claude-opus-5-5"
+generated_at: "2026-10-19"
+generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.11.0"
 
 properties:
@@ -18,6 +22,10 @@ properties:
 ---
 
 An adversarial example is a specially crafted input that is designed to look "normal" to humans but causes a machine learning model to misclassify it. Often a form of specially designed "noise" is used to bring about the misclassification. Adversarial examples are one of the specific attack types studied in [[DefinedTerm/adversarial-machine-learning|adversarial machine learning]], many of which work against deep learning systems as well as traditional models such as support vector machines and linear regression.
+
+## Origin of the term
+
+The term was introduced in the paper [[ScholarlyArticle/intriguing-properties-of-neural-networks|"Intriguing properties of neural networks"]] by Christian Szegedy and co-authors (arXiv:1312.6199). Applying an imperceptible, non-random perturbation to a test image, they found it possible to arbitrarily change a deep network's prediction; the perturbations were found by optimising the input to maximise the prediction error, and the authors termed the perturbed inputs "adversarial examples". The paper reports that such examples are relatively robust: a relatively large fraction of those generated for one network are also misclassified by networks with different numbers of layers, activations or hyperparameters, and by networks trained on a disjoint subset of the training data. The authors read this as evidence that deep networks learned by backpropagation have intrinsic blind spots whose structure is connected to the data distribution in a non-obvious way, and offered as a possible explanation that adversarial examples form a set of extremely low probability that is nevertheless dense, so that one is found near virtually every test case.
 
 ## Examples
 
