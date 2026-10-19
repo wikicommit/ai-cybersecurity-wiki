@@ -24,6 +24,10 @@ sources:
     url: 'https://arxiv.org/html/2509.10540'
     hash: sha256:3e19990a8c690e2705de4751578e366e68e7e11a2e6928cfe3602c4d5b7a7da8
     license: CC-BY-4.0
+  - type: url
+    url: 'https://genai.owasp.org/llmrisk/llm01-prompt-injection/'
+    hash: sha256:93f90a5f53b13a4fbdaac9b0b8cb62257f813d905947d6f15928e7bd9a723306
+    license: CC-BY-SA-4.0
 review_status: pending
 generated_at: "2026-10-19"
 generated_by: "claude-opus-5-5[1m]"
@@ -33,7 +37,7 @@ properties:
   description: "A cybersecurity exploit and attack vector in which innocuous-looking inputs are designed to cause unintended behaviour in machine learning models, particularly large language models. It exploits a model's inability to distinguish developer-defined prompts from user inputs."
 ---
 
-Prompt injection is a cybersecurity exploit and attack vector in which innocuous-looking inputs — prompts — are designed to cause unintended behaviour in machine learning models, particularly large language models (LLMs). It takes advantage of a model's inability to distinguish between developer-defined prompts and user inputs, so as to bypass safeguards and influence the model's behaviour: although LLMs are designed to follow trusted instructions, carefully crafted inputs can manipulate them into unintended responses. It is a type of code injection attack that uses adversarial prompt engineering. Prompt injection is the first entry, LLM01, of the [[DefinedTermSet/owasp-top-10-for-llm-applications|OWASP Top 10 for LLM Applications]].
+Prompt injection is a cybersecurity exploit and attack vector in which innocuous-looking inputs — prompts — are designed to cause unintended behaviour in machine learning models, particularly large language models (LLMs). It takes advantage of a model's inability to distinguish between developer-defined prompts and user inputs, so as to bypass safeguards and influence the model's behaviour: although LLMs are designed to follow trusted instructions, carefully crafted inputs can manipulate them into unintended responses. It is a type of code injection attack that uses adversarial prompt engineering. Prompt injection is the first entry, LLM01, of the [[DefinedTermSet/owasp-top-10-for-llm-applications|OWASP Top 10 for LLM Applications]], in both its 2023 version 1.1 and its 2025 edition.
 
 ## How it works
 
@@ -72,7 +76,11 @@ Simon Willison distinguished prompt injection from jailbreaking: jailbreaking by
 
 Version 1.1 of the OWASP Top 10 for LLM Applications (2023) draws the line differently: it describes direct prompt injections as "also known as 'jailbreaking'", occurring when a malicious user overwrites or reveals the underlying system prompt.
 
+The 2025 edition of the OWASP list treats the two as related concepts that are often used interchangeably, and places jailbreaking inside prompt injection: prompt injection manipulates model responses through specific inputs to alter the model's behaviour, which can include bypassing safety measures, while jailbreaking is a form of prompt injection in which the attacker's inputs make the model disregard its safety protocols entirely. According to that entry, developers can build safeguards into system prompts and input handling to help mitigate prompt injection, but effective prevention of jailbreaking requires ongoing updates to the model's training and safety mechanisms.
+
 ## In the OWASP Top 10 for LLM Applications
+
+### Version 1.1 (2023)
 
 The OWASP list (version 1.1, 2023) defines the vulnerability as an attacker manipulating an LLM through crafted inputs so that it unknowingly carries out the attacker's intentions, either directly or indirectly through manipulated external inputs. It describes the two forms this way:
 
@@ -90,6 +98,35 @@ The list's example attack scenarios include:
 | A summarised webpage tells the model to insert an image linking to a URL that contains a summary of the conversation | The user's browser exfiltrates the private conversation |
 | A résumé uploaded by a malicious user contains a prompt injection, and the backend user asks an LLM to summarise it and say whether the candidate is good | The LLM says yes, whatever the résumé actually contains |
 | An attacker asks a proprietary model that relies on a system prompt to repeat that prompt | The attacker obtains the prompt and can reuse it or build subtler attacks |
+
+### 2025 edition (LLM01:2025)
+
+The 2025 edition defines a prompt injection vulnerability as occurring when user prompts alter an LLM's behaviour or output in unintended ways. Such inputs can affect the model even when they are imperceptible to humans, so a prompt injection need not be human-visible or readable as long as the model parses the content. The vulnerabilities lie in how models process prompts, and in how input may force the model to pass prompt data incorrectly to other parts of the model, potentially causing it to violate guidelines, generate harmful content, enable unauthorised access or influence critical decisions.
+
+The entry distinguishes two types:
+
+| Type | What happens |
+| --- | --- |
+| Direct prompt injection | A user's prompt input directly alters the model's behaviour in unintended or unexpected ways. It can be intentional — a malicious actor deliberately crafting a prompt to exploit the model — or unintentional, when a user inadvertently provides input that triggers unexpected behaviour |
+| Indirect prompt injection | The LLM accepts input from external sources such as websites or files, and data in that content alters the model's behaviour when the model interprets it. Like direct injections, these can be intentional or unintentional |
+
+How severe a successful attack is depends largely on the business context the model operates in and on the agency with which the model is architected. Outcomes the entry names include disclosure of sensitive information, revealing information about the AI system's infrastructure or system prompts, content manipulation leading to incorrect or biased outputs, unauthorised access to functions available to the LLM, executing arbitrary commands in connected systems, and manipulating critical decision-making. Multimodal AI, which processes several data types at once, adds its own risks: malicious actors could exploit interactions between modalities, such as instructions hidden in images that accompany benign text, and multimodal models may be susceptible to cross-modal attacks that are hard to detect and mitigate with current techniques.
+
+The entry's example attack scenarios are:
+
+| Scenario | What happens |
+| --- | --- |
+| Direct injection | An attacker's prompt to a customer support chatbot tells it to ignore previous guidelines, query private data stores and send emails, leading to unauthorised access and privilege escalation |
+| Indirect injection | A user has an LLM summarise a webpage whose hidden instructions make it insert an image linking to a URL, exfiltrating the private conversation |
+| Unintentional injection | A company puts an instruction in a job description to identify AI-generated applications, and an applicant who optimises their résumé with an LLM unknowingly triggers the AI detection |
+| Intentional model influence | An attacker modifies a document in a repository used by a retrieval-augmented generation (RAG) application, and the malicious instructions in the returned content alter the LLM's output, producing misleading results |
+| Code injection | An attacker exploits a vulnerability (CVE-2024-5184) in an LLM-powered email assistant to inject malicious prompts, gaining access to sensitive information and manipulating email content |
+| Payload splitting | A résumé carries split malicious prompts that, combined when an LLM evaluates the candidate, produce a positive recommendation regardless of the résumé's actual contents |
+| Multimodal injection | A malicious prompt embedded in an image accompanying benign text alters a multimodal model's behaviour when it processes both, potentially leading to unauthorised actions or disclosure of sensitive information |
+| Adversarial suffix | A seemingly meaningless string of characters appended to a prompt influences the output maliciously, bypassing safety measures |
+| Multilingual or obfuscated attack | Multiple languages, or instructions encoded for example in Base64 or emojis, are used to evade filters and manipulate the model |
+
+The entry relates the vulnerability to three MITRE ATLAS techniques: AML.T0051.000 (LLM Prompt Injection: Direct), AML.T0051.001 (LLM Prompt Injection: Indirect) and AML.T0054 (LLM Jailbreak Injection: Direct).
 
 ## History
 
@@ -123,6 +160,18 @@ Mitigation strategies include input and output filtering, prompt evaluation, rei
 | Guardrails | Distinguishing task instructions from retrieved data, for example by automatically scanning retrieved data for instructions before the AI processes it and reviewing or filtering flagged inputs |
 | User training | AI-specific training that helps employees understand AI models, their vulnerabilities and disguised malicious prompts |
 | System prompt | Relying solely on a system prompt that tells the model to watch for injection attempts has limited effectiveness |
+
+The 2025 edition of the OWASP list states that prompt injection vulnerabilities are possible because of the nature of generative AI: given the stochastic influence at the heart of how models work, it is unclear whether fool-proof prevention exists, and although techniques such as RAG and fine-tuning aim to make outputs more relevant and accurate, research shows they do not fully mitigate the vulnerability. It lists seven measures that can mitigate the impact:
+
+| Measure | What it involves |
+| --- | --- |
+| Constrain model behaviour | State the model's role, capabilities and limitations in the system prompt, enforce strict context adherence, limit responses to specific tasks or topics, and instruct the model to ignore attempts to modify its core instructions |
+| Define and validate output formats | Specify clear output formats, request detailed reasoning and source citations, and validate adherence with deterministic code |
+| Input and output filtering | Define sensitive categories with rules for handling them, apply semantic filters and string-checking for non-allowed content, and evaluate responses with the "RAG Triad" — context relevance, groundedness and question/answer relevance |
+| Privilege control and least privilege | Give the application its own API tokens for extensible functionality, handle those functions in code rather than giving them to the model, and restrict the model's access to the minimum its operations need |
+| Human approval for high-risk actions | Human-in-the-loop controls on privileged operations |
+| Segregate and identify external content | Separate and clearly mark untrusted content to limit its influence on user prompts |
+| Adversarial testing and attack simulation | Regular penetration testing and breach simulations that treat the model as an untrusted user, to test trust boundaries and access controls |
 
 Version 1.1 of the OWASP Top 10 for LLM Applications states that prompt injection is possible because LLMs do not separate instructions from external data and treat both as user-provided, so there is no fool-proof prevention within the LLM; the measures it lists can only mitigate the impact:
 
