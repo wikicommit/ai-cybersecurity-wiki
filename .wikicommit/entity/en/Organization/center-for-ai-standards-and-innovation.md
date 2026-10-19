@@ -9,13 +9,17 @@ sources:
     url: 'https://en.wikipedia.org/wiki/Artificial_intelligence_safety_institute'
     hash: sha256:18f967672b4a97e7a1369b4f02cd5f26c6e039a58aed1f0e1c0930566f2361e8
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://en.wikipedia.org/wiki/Regulation_of_artificial_intelligence_in_the_United_States'
+    hash: sha256:436fd538f84659566db37d20520a50871f304a400803bdc6d316cb35f62c87a9
+    license: CC-BY-SA-4.0
 review_status: pending
 generated_at: "2026-10-19"
 generated_by: "claude-opus-5-5[1m]"
 generated_with: "0.11.0"
 
 properties:
-  description: "The United States' artificial intelligence safety institute, part of the National Institute of Standards and Technology. Founded in November 2023 as the US AI Safety Institute, it was renamed the Center for AI Standards and Innovation in June 2025 and its mission transformed."
+  description: "The United States' artificial intelligence safety institute, part of the National Institute of Standards and Technology. Founded in November 2023 as the US AI Safety Institute, it was renamed the Center for AI Standards and Innovation in June 2025 and its mission transformed. It is the federal government's primary point of contact for AI developers and makes agreements with them for federal review of frontier AI models."
 ---
 
 The Center for AI Standards and Innovation (CAISI) is the United States' [[DefinedTerm/artificial-intelligence-safety-institute|artificial intelligence safety institute]], part of the National Institute of Standards and Technology (NIST). It was founded in November 2023 as the US AI Safety Institute and took its present name in June 2025, when its mission was transformed.
@@ -29,11 +33,14 @@ The Center for AI Standards and Innovation (CAISI) is the United States' [[Defin
 | March 2024 | A budget of $10 million was allocated |
 | April 2024 | The US and the UK agreed to collaborate on at least one joint safety test |
 | February 2025 | Under President Trump, plans for agency members to attend the AI Action Summit in Paris were scrapped |
-| June 2025 | Renamed the Center for AI Standards and Innovation, with a transformed mission |
+| June 2025 | Renamed the Center for AI Standards and Innovation, with a transformed mission. An account of US AI regulation describes this as the Department of Commerce establishing CAISI as part of NIST |
+| By June 2026 | Anthropic, Google, Microsoft and OpenAI had established AI model review agreements with CAISI |
 
 ## Mission after 2025
 
 According to Secretary of Commerce Howard Lutnick, "For far too long, censorship and regulations have been used under the guise of national security. Innovators will no longer be limited by these standards. CAISI will evaluate and enhance US innovation of these rapidly developing commercial AI systems while ensuring they remain secure to our national security standards." The Department of Commerce stated that CAISI would represent American interests internationally, guarding against burdensome and unnecessary regulation of US technologies by foreign governments. It collaborates with the NIST Information Technology Laboratory.
+
+CAISI serves as the federal government's primary point of contact for AI developers, streamlining coordination between private industry and the US government on AI issues including security, evaluation, assessment, and the development of guidelines, standards and best practices. It is responsible for establishing agreements with AI industry leaders and developers that allow federal government review processes of frontier AI models.
 
 ## Funding and reception
 

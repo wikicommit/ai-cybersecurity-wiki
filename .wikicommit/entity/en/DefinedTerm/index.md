@@ -23,4 +23,7 @@ comments: false
 - [[DefinedTerm/model-extraction]]
 - [[DefinedTerm/phishing]]
 - [[DefinedTerm/prompt-injection]]
+- [[DefinedTerm/red-team]]
+- [[DefinedTerm/security-information-and-event-management]]
+- [[DefinedTerm/social-engineering]]
 - [[DefinedTerm/supply-chain-attack]]
