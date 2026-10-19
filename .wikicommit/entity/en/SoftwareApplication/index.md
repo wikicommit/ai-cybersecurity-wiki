@@ -13,4 +13,5 @@ comments: false
 - [[SoftwareApplication/microsoft-365-copilot]]
 - [[SoftwareApplication/oss-fuzz]]
 - [[SoftwareApplication/pyrit]]
+- [[SoftwareApplication/sydney-microsoft]]
 - [[SoftwareApplication/tay]]
