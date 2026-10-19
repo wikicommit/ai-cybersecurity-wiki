@@ -8,4 +8,5 @@ comments: false
 
 - [[SoftwareApplication/american-fuzzy-lop]]
 - [[SoftwareApplication/oss-fuzz]]
+- [[SoftwareApplication/pyrit]]
 - [[SoftwareApplication/tay]]
