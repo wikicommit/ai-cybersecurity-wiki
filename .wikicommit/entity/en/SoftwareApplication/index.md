@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[SoftwareApplication/american-fuzzy-lop]]
+- [[SoftwareApplication/microsoft-365-copilot]]
 - [[SoftwareApplication/oss-fuzz]]
 - [[SoftwareApplication/pyrit]]
 - [[SoftwareApplication/tay]]

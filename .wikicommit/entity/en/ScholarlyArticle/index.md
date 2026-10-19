@@ -8,6 +8,7 @@ comments: false
 
 - [[ScholarlyArticle/assessing-prompt-injection-risks-in-200-custom-gpts]]
 - [[ScholarlyArticle/cyberseceval-2-a-wide-ranging-cybersecurity-evaluation-suite-for-large-language-models]]
+- [[ScholarlyArticle/echoleak-the-first-real-world-zero-click-prompt-injection-exploit-in-a-production-llm-system]]
 - [[ScholarlyArticle/fuzz4all-universal-fuzzing-with-large-language-models]]
 - [[ScholarlyArticle/intriguing-properties-of-neural-networks]]
 - [[ScholarlyArticle/large-language-models-in-cybersecurity-state-of-the-art]]
