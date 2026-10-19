@@ -20,6 +20,10 @@ sources:
     url: 'https://arxiv.org/html/2311.11538'
     hash: sha256:a4dfa5e01405e2c96ee077787e60a513010233ea029e9081ec88f79e7e18f8f0
     license: CC-BY-4.0
+  - type: url
+    url: 'https://arxiv.org/html/2509.10540'
+    hash: sha256:3e19990a8c690e2705de4751578e366e68e7e11a2e6928cfe3602c4d5b7a7da8
+    license: CC-BY-4.0
 review_status: pending
 generated_at: "2026-10-19"
 generated_by: "claude-opus-5-5[1m]"
@@ -102,7 +106,10 @@ The list's example attack scenarios include:
 | January 2025 | DeepSeek-R1 | Reported vulnerable to direct and indirect injection; in tests with WithSecure's Spikee benchmark it ranked 17th of 19 models in isolation and 16th with predefined rules and data markers |
 | Early 2025 | AI-powered peer review | Researchers found academic papers containing hidden prompts designed to make AI peer-review systems produce favourable reviews |
 | February 2025 | Google's Gemini | Hidden instructions in documents manipulated its long-term memory — see [[Event/gemini-memory-prompt-injection-2025]] |
+| June 2025 | Microsoft 365 Copilot | EchoLeak (CVE-2025-32711), a zero-click indirect injection through a crafted email that could exfiltrate internal data, was disclosed after a server-side fix — see [[Event/echoleak-microsoft-365-copilot-vulnerability-2025]] |
 | July 2025 | X's Grok 4 | NeuralTrust reported a successful jailbreak |
+
+The case study [[ScholarlyArticle/echoleak-the-first-real-world-zero-click-prompt-injection-exploit-in-a-production-llm-system|"EchoLeak: The First Real-World Zero-Click Prompt Injection Exploit in a Production LLM System"]] (Reddy and Gujral) states that before EchoLeak, prompt injection attacks were largely considered theoretical, with no confirmed real-world breaches. It describes EchoLeak as the first known case of a prompt injection being weaponised to cause concrete data exfiltration in a production AI system, and argues that it established prompt injection as a practical, high-severity vulnerability class.
 
 Cybersecurity agencies including the UK National Cyber Security Centre (NCSC) and the US National Institute of Standards and Technology (NIST) classify prompt injection as a critical security threat, with possible consequences such as data manipulation, phishing, misinformation and denial-of-service attacks.
 
@@ -126,5 +133,7 @@ Version 1.1 of the OWASP Top 10 for LLM Applications states that prompt injectio
 | Segregating external content | Separate and mark where untrusted content is used, to limit its influence on user prompts — for example ChatML for OpenAI API calls |
 | Trust boundaries | Treat the LLM as an untrusted user, keep final decisions with the user, and visually highlight potentially untrustworthy responses, since a compromised LLM may still sit between the application's APIs and the user |
 | Monitoring | Periodically check LLM input and output manually; this is not a mitigation but provides data for detecting and addressing weaknesses |
+
+Drawing on EchoLeak, Reddy and Gujral argue that single-layer defences fail under modest adversarial pressure — in that case an injection classifier, link redaction and a content security policy were each bypassed — and recommend defence in depth: strict prompt partitioning that tags external content as non-authoritative, provenance-based access control that defaults to internal sources, input filtering, validation of model output before it is rendered, restrictive content security policies, and continuous red-teaming.
 
 Liu et al. state that there were no systematic techniques for preventing prompt injection in LLM-integrated applications, only empirically proposed strategies. They implemented six of them — instruction defence, post-prompting (placing the user's input before the prompt), random sequence enclosure, sandwich defence, XML tagging and separate LLM evaluation — and report that on manual inspection their HouYi technique could effectively circumvent these measures.
