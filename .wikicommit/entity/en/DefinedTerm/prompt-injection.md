@@ -8,8 +8,12 @@ sources:
     url: 'https://en.wikipedia.org/wiki/Prompt_injection'
     hash: sha256:c229191a7b2a9d15a3c7405303827c9904388e9cff8d2723b87052ea670b02da
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://owasp.github.io/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf'
+    hash: sha256:92cca25ec39d1565bc045171be6c1289167e0f91017bc7d2a9f71d16de9b8542
+    license: CC-BY-SA-4.0
 review_status: pending
-generated_at: "2026-10-18"
+generated_at: "2026-10-19"
 generated_by: "claude-opus-5-5"
 generated_with: "0.11.0"
 
@@ -17,7 +21,7 @@ properties:
   description: "A cybersecurity exploit and attack vector in which innocuous-looking inputs are designed to cause unintended behaviour in machine learning models, particularly large language models. It exploits a model's inability to distinguish developer-defined prompts from user inputs."
 ---
 
-Prompt injection is a cybersecurity exploit and attack vector in which innocuous-looking inputs — prompts — are designed to cause unintended behaviour in machine learning models, particularly large language models (LLMs). It takes advantage of a model's inability to distinguish between developer-defined prompts and user inputs, so as to bypass safeguards and influence the model's behaviour: although LLMs are designed to follow trusted instructions, carefully crafted inputs can manipulate them into unintended responses. It is a type of code injection attack that uses adversarial prompt engineering.
+Prompt injection is a cybersecurity exploit and attack vector in which innocuous-looking inputs — prompts — are designed to cause unintended behaviour in machine learning models, particularly large language models (LLMs). It takes advantage of a model's inability to distinguish between developer-defined prompts and user inputs, so as to bypass safeguards and influence the model's behaviour: although LLMs are designed to follow trusted instructions, carefully crafted inputs can manipulate them into unintended responses. It is a type of code injection attack that uses adversarial prompt engineering. Prompt injection is the first entry, LLM01, of the [[DefinedTermSet/owasp-top-10-for-llm-applications|OWASP Top 10 for LLM Applications]].
 
 ## How it works
 
@@ -29,7 +33,7 @@ Capabilities such as web browsing and file upload widen the problem: the model m
 
 | Type | What happens | Whom it threatens |
 | --- | --- | --- |
-| Direct injection | User input is mistaken for developer instruction, leading to unexpected manipulation of responses. This is the original form of prompt injection | The developer, from the user |
+| Direct injection | User input is mistaken for developer instruction, leading to unexpected manipulation of responses. This is the original form of prompt injection | When intentional, the developer, from the user |
 | Indirect injection | The prompt sits in external data such as emails and documents, and contains an instruction the AI mistakes as coming from the user or the developer. It can be intentional, to evade filters, or unintentional from the user's point of view, when the document's author manipulates what the user is shown | When unintentional, the user, from the data's author |
 
 An example of indirect injection that is unintentional for the user is a job seeker putting hidden, white-coloured text in a résumé so that an AI rating tool gives it a good rating regardless of its content.
@@ -46,6 +50,27 @@ Prompt leaking is when a user uses a chat prompt to reveal the software's system
 
 Simon Willison distinguished prompt injection from jailbreaking: jailbreaking bypasses an AI model's safeguards, whereas prompt injection exploits its inability to tell system instructions from user inputs. Some prompt injection attacks involve jailbreaking, but the two remain distinct techniques.
 
+Version 1.1 of the OWASP Top 10 for LLM Applications (2023) draws the line differently: it describes direct prompt injections as "also known as 'jailbreaking'", occurring when a malicious user overwrites or reveals the underlying system prompt.
+
+## In the OWASP Top 10 for LLM Applications
+
+The OWASP list (version 1.1, 2023) defines the vulnerability as an attacker manipulating an LLM through crafted inputs so that it unknowingly carries out the attacker's intentions, either directly or indirectly through manipulated external inputs. It describes the two forms this way:
+
+- **Direct prompt injection** — a malicious user overwrites or reveals the system prompt, which may let the attacker exploit backend systems by interacting with insecure functions and data stores reachable through the LLM.
+- **Indirect prompt injection** — the LLM accepts input from external sources an attacker can control, such as websites or files, and the injected prompt hijacks the conversation context. The LLM then acts as a "confused deputy", letting the attacker manipulate the user or other systems the LLM can access. Indirect injections need not be visible or readable to humans, as long as the LLM parses the text.
+
+According to the list, the results can range from soliciting sensitive information to influencing critical decisions under the guise of normal operation. In advanced attacks the compromised LLM effectively acts as an agent for the attacker, for example by mimicking a harmful persona or using plugins in the user's setting, without triggering the usual safeguards or alerting the user.
+
+The list's example attack scenarios include:
+
+| Scenario | Outcome |
+| --- | --- |
+| A direct injection against an LLM-based support chatbot tells it to query private data stores and exploit package vulnerabilities and missing output validation in a backend e-mail function | Remote code execution, unauthorised access and privilege escalation |
+| A webpage carries an indirect injection telling the LLM to use a plugin to delete the user's e-mails, and the user asks the LLM to summarise the page | The plugin deletes the user's e-mails |
+| A summarised webpage tells the model to insert an image linking to a URL that contains a summary of the conversation | The user's browser exfiltrates the private conversation |
+| A résumé uploaded by a malicious user contains a prompt injection, and the backend user asks an LLM to summarise it and say whether the candidate is good | The LLM says yes, whatever the résumé actually contains |
+| An attacker asks a proprietary model that relies on a system prompt to repeat that prompt | The attacker obtains the prompt and can reuse it or build subtler attacks |
+
 ## History
 
 - **May 2022** — Jonathan Cefalu of Preamble identified prompt injection, calling it "command injection", as a security vulnerability and reported it to OpenAI. The term "prompt injection" itself was first used by the Twitter user @himbodhisattva the same month, in a tweet asking whether services that wrap GPT-3 could suffer "the equivalent of sql injection".
@@ -61,7 +86,7 @@ Simon Willison distinguished prompt injection from jailbreaking: jailbreaking by
 | January 2025 | DeepSeek-R1 | Reported vulnerable to direct and indirect injection; in tests with WithSecure's Spikee benchmark it ranked 17th of 19 models in isolation and 16th with predefined rules and data markers |
 | Early 2025 | AI-powered peer review | Researchers found academic papers containing hidden prompts designed to make AI peer-review systems produce favourable reviews |
 | February 2025 | Google's Gemini | Hidden instructions in documents manipulated its long-term memory — see [[Event/gemini-memory-prompt-injection-2025]] |
-| July 2025 | X's Grok 4 | NeuralTrust reported a successful jailbreak (a jailbreak rather than a prompt injection) |
+| July 2025 | X's Grok 4 | NeuralTrust reported a successful jailbreak |
 
 Cybersecurity agencies including the UK National Cyber Security Centre (NCSC) and the US National Institute of Standards and Technology (NIST) classify prompt injection as a critical security threat, with possible consequences such as data manipulation, phishing, misinformation and denial-of-service attacks.
 
@@ -75,3 +100,13 @@ Mitigation strategies include input and output filtering, prompt evaluation, rei
 | Guardrails | Distinguishing task instructions from retrieved data, for example by automatically scanning retrieved data for instructions before the AI processes it and reviewing or filtering flagged inputs |
 | User training | AI-specific training that helps employees understand AI models, their vulnerabilities and disguised malicious prompts |
 | System prompt | Relying solely on a system prompt that tells the model to watch for injection attempts has limited effectiveness |
+
+Version 1.1 of the OWASP Top 10 for LLM Applications states that prompt injection is possible because LLMs do not separate instructions from external data and treat both as user-provided, so there is no fool-proof prevention within the LLM; the measures it lists can only mitigate the impact:
+
+| Measure | What it involves |
+| --- | --- |
+| Privilege control | Give the LLM its own API tokens for extended functionality such as plugins and data access, and follow the principle of least privilege |
+| Human in the loop | Require the user to approve privileged operations, such as sending or deleting e-mails, before they are carried out |
+| Segregating external content | Separate and mark where untrusted content is used, to limit its influence on user prompts — for example ChatML for OpenAI API calls |
+| Trust boundaries | Treat the LLM as an untrusted user, keep final decisions with the user, and visually highlight potentially untrustworthy responses, since a compromised LLM may still sit between the application's APIs and the user |
+| Monitoring | Periodically check LLM input and output manually; this is not a mitigation but provides data for detecting and addressing weaknesses |
