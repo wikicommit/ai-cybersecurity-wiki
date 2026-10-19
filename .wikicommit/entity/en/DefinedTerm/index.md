@@ -27,3 +27,7 @@ comments: false
 - [[DefinedTerm/security-information-and-event-management]]
 - [[DefinedTerm/social-engineering]]
 - [[DefinedTerm/supply-chain-attack]]
+- [[DefinedTerm/threat-modeling]]
+- [[DefinedTerm/user-behavior-analytics]]
+- [[DefinedTerm/voice-phishing]]
+- [[DefinedTerm/vulnerability-computer-security]]
