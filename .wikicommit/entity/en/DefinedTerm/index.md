@@ -13,6 +13,7 @@ comments: false
 - [[DefinedTerm/artificial-intelligence-safety-institute]]
 - [[DefinedTerm/audio-deepfake]]
 - [[DefinedTerm/data-poisoning]]
+- [[DefinedTerm/differential-privacy]]
 - [[DefinedTerm/evasion-attack]]
 - [[DefinedTerm/fuzzing]]
 - [[DefinedTerm/intrusion-detection-system]]
