@@ -7,6 +7,7 @@ comments: false
 ---
 
 - [[Event/2016-cyber-grand-challenge]]
+- [[Event/ai-cyber-challenge]]
 - [[Event/ai-safety-summit-2023]]
 - [[Event/ai-seoul-summit-2024]]
 - [[Event/arup-deepfake-scam-2024]]

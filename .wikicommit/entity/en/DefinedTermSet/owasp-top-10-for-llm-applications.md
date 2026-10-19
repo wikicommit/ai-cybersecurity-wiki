@@ -41,6 +41,14 @@ sources:
     url: 'https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/'
     hash: sha256:19c1f0cba3a0328c8b4c553186f65801a5c87c9f13b6a5505a7528aa91fadcc7
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://genai.owasp.org/llmrisk/llm092025-misinformation/'
+    hash: sha256:450f9b98e7b63d33a7f3bd59de8807b439f0b617613196129ddbc927f762889b
+    license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/'
+    hash: sha256:7bcb000fa2ab4b087ed2dbc9abd5b1f03b2f610f4bc13577ccaf70927affdaff
+    license: CC-BY-SA-4.0
 review_status: pending
 generated_at: "2026-10-19"
 generated_by: "claude-opus-5-5[1m]"
@@ -100,10 +108,10 @@ In the 2025 edition Prompt Injection remains LLM01. Sensitive Information Disclo
 | LLM06:2025 | [[DefinedTerm/excessive-agency\|Excessive Agency]] | Concerns the degree of agency, such as the ability to call functions, that a developer grants an LLM-based system |
 | LLM07:2025 | [[DefinedTerm/system-prompt-leakage\|System Prompt Leakage]] | The risk of leakage of the system prompts or instructions used with LLMs |
 | LLM08:2025 | [[DefinedTerm/vector-and-embedding-weaknesses\|Vector and Embedding Weaknesses]] | Security risks in systems that use retrieval-augmented generation (RAG) with LLMs |
-| LLM09:2025 | Misinformation | LLMs produce false information, a core vulnerability for applications relying on them |
-| LLM10:2025 | Unbounded Consumption | Concerns the process by which an LLM generates outputs from input queries |
+| LLM09:2025 | [[DefinedTerm/llm-misinformation\|Misinformation]] | LLMs produce false or misleading information that appears credible, a core vulnerability for applications relying on them |
+| LLM10:2025 | [[DefinedTerm/unbounded-consumption\|Unbounded Consumption]] | An LLM application allows users to conduct excessive and uncontrolled inferences, leading to risks such as denial of service, economic losses, model theft and service degradation |
 
-The LLM01:2025 entry relates prompt injection to three MITRE ATLAS techniques: AML.T0051.000 (LLM Prompt Injection: Direct), AML.T0051.001 (LLM Prompt Injection: Indirect) and AML.T0054 (LLM Jailbreak Injection: Direct). The LLM04:2025 entry relates data and model poisoning to the MITRE ATLAS technique AML.T0018 (Backdoor ML Model), and to the NIST AI Risk Management Framework. The LLM07:2025 entry relates system prompt leakage to AML.T0051.000 (LLM Prompt Injection: Direct (Meta Prompt Extraction)).
+The LLM01:2025 entry relates prompt injection to three MITRE ATLAS techniques: AML.T0051.000 (LLM Prompt Injection: Direct), AML.T0051.001 (LLM Prompt Injection: Indirect) and AML.T0054 (LLM Jailbreak Injection: Direct). The LLM04:2025 entry relates data and model poisoning to the MITRE ATLAS technique AML.T0018 (Backdoor ML Model), and to the NIST AI Risk Management Framework. The LLM07:2025 entry relates system prompt leakage to AML.T0051.000 (LLM Prompt Injection: Direct (Meta Prompt Extraction)). The LLM09:2025 entry relates misinformation to AML.T0048.002 (Societal Harm). The LLM10:2025 entry relates unbounded consumption to the ATLAS tactic AML.TA0000 (ML Model Access) and techniques AML.T0024, AML.T0029, AML.T0034 and AML.T0025, to CWE-400 (Uncontrolled Resource Consumption), and to ML05:2023 Model Theft of the OWASP Machine Learning Security Top Ten and API4:2023 Unrestricted Resource Consumption.
 
 ## How the entries are written
 
@@ -127,6 +135,7 @@ Every entry of version 1.1 follows the same structure: a description, common exa
 The list draws several lines between its own entries:
 
 - **Insecure Output Handling and Overreliance** — Insecure Output Handling concerns LLM output before it is passed downstream; Overreliance concerns the broader dependence on the accuracy and appropriateness of that output. The 2025 edition's LLM05:2025 Improper Output Handling entry draws the same line between improper output handling and overreliance.
+- **Overreliance and Misinformation** — the 2025 edition's LLM09:2025 Misinformation entry treats overreliance, the name of LLM09 in version 1.1, as a related issue: users' excessive trust in LLM-generated content exacerbates the impact of misinformation.
 - **Excessive Agency and Insecure Output Handling** — Excessive Agency is about damaging actions an LLM-based system can take whatever caused it to malfunction (hallucination, prompt injection, a malicious plugin, a poorly-performing model), and differs from Insecure Output Handling, which concerns insufficient scrutiny of the output.
 - **Insecure Plugin Design and Supply Chain Vulnerabilities** — Insecure Plugin Design covers writing LLM plugins; the risks of using third-party plugins fall under Supply Chain Vulnerabilities.
 - **Prompt Injection and Training Data Poisoning** — prompt injection can be an attack vector for training data poisoning when client input to an LLM application is used to train the model without enough sanitisation and filtering.
