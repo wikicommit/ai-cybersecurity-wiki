@@ -16,6 +16,7 @@ comments: false
 - [[Event/echoleak-microsoft-365-copilot-vulnerability-2025]]
 - [[Event/gemini-memory-prompt-injection-2025]]
 - [[Event/grok-sexual-deepfake-scandal]]
+- [[Event/moffatt-v-air-canada]]
 - [[Event/new-hampshire-biden-robocall-deepfake-2024]]
 - [[Event/openai-rogue-agent-cyberattacks-2026]]
 - [[Event/openai-rogue-agent-hugging-face-breach-2026]]
