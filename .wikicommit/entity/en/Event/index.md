@@ -22,5 +22,6 @@ comments: false
 - [[Event/openai-rogue-agent-cyberattacks-2026]]
 - [[Event/openai-rogue-agent-hugging-face-breach-2026]]
 - [[Event/openai-rogue-agent-medicare-breach-2026]]
+- [[Event/senior-us-officials-impersonation-campaign-2025]]
 - [[Event/tay-chatbot-incident-2016]]
 - [[Event/taylor-swift-deepfake-pornography-controversy-2024]]
