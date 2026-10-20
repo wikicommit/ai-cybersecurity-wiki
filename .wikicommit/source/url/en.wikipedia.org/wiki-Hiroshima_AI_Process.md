@@ -7,14 +7,18 @@ source:
   lang: 'en'
 
 schema:
-status: pending
-last_generated_at:
+status: generated
+last_generated_at: '2026-10-20'
 extracted_tokens: 1563
-generated_pages: []
+generated_pages:
+- .wikicommit/entity/en/Project/hiroshima-ai-process.md
 failed_pages: []
 ---
 
+## Summary
 
-## Deferred Reason
+The Hiroshima AI Process is an international initiative launched by the Group of Seven (G7) at its 2023 summit in Hiroshima, Japan, to coordinate approaches to governing advanced and generative artificial intelligence through a ministerial-level forum on risks, standards and policy responses. In October 2023 G7 leaders agreed under the process on international guiding principles and a voluntary code of conduct for organisations developing advanced AI systems, and commentators have placed the initiative within a wider competition among major economies to shape global AI governance.
 
-Pass 2b type candidate awaiting a person's answer: schema:Project. Motivating entity: "Hiroshima AI Process" (an international policy initiative launched by the G7 at its 2023 Hiroshima summit as an ongoing, ministerial-level process and forum for dialogue on governing advanced and generative AI, with stated aims and a membership of G7 states and partners). schema:Project ("an enterprise, typically collaborative, planned to achieve a particular aim") fits a collaborative, aim-directed process more directly than the installed schema:Organization, whose boundary rule limits it to a group acting as a single actor, or schema:Event, which is anchored to dates rather than an ongoing process; Project also inherits Organization's founder/foundingDate/member properties, which map onto the source's formation date, founder (G7) and members.
+## Generation Notes
+
+.wikicommit/entity/en/Project/hiroshima-ai-process.md: the page this run wrote does not answer reader question 3 (the roles the participants play in the initiative); it names the participants only as G7 member states and partners.
