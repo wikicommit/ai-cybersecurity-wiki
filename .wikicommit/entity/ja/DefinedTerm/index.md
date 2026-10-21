@@ -36,3 +36,8 @@ comments: false
 - [[DefinedTerm/social-engineering]]
 - [[DefinedTerm/supply-chain-attack]]
 - [[DefinedTerm/system-prompt-leakage]]
+- [[DefinedTerm/threat-modeling]]
+- [[DefinedTerm/unbounded-consumption]]
+- [[DefinedTerm/user-behavior-analytics]]
+- [[DefinedTerm/vector-and-embedding-weaknesses]]
+- [[DefinedTerm/voice-phishing]]
