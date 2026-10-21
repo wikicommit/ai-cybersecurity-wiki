@@ -31,3 +31,8 @@ comments: false
 - [[DefinedTerm/phishing]]
 - [[DefinedTerm/prompt-injection]]
 - [[DefinedTerm/red-team]]
+- [[DefinedTerm/security-information-and-event-management]]
+- [[DefinedTerm/sensitive-information-disclosure]]
+- [[DefinedTerm/social-engineering]]
+- [[DefinedTerm/supply-chain-attack]]
+- [[DefinedTerm/system-prompt-leakage]]
