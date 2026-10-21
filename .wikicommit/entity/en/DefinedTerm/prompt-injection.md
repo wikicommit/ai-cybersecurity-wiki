@@ -28,9 +28,13 @@ sources:
     url: 'https://genai.owasp.org/llmrisk/llm01-prompt-injection/'
     hash: sha256:93f90a5f53b13a4fbdaac9b0b8cb62257f813d905947d6f15928e7bd9a723306
     license: CC-BY-SA-4.0
+  - type: url
+    url: 'https://arxiv.org/html/2310.12815'
+    hash: sha256:adbba71860334f1cb9d11baefe8ce2daee267b2e588e6a76da0ebf99cc9d8cf4
+    license: CC-BY-4.0
 review_status: pending
-generated_at: "2026-10-19"
-generated_by: "claude-opus-5-5[1m]"
+generated_at: "2026-10-20"
+generated_by: "claude-opus-5-5"
 generated_with: "0.11.0"
 
 properties:
@@ -70,6 +74,20 @@ The study [[ScholarlyArticle/prompt-injection-attack-against-llm-integrated-appl
 
 To get past this, the authors propose HouYi, a black-box technique they model on SQL injection and cross-site scripting. It builds an injected prompt from a framework component that fits the application's normal flow, a separator component that cuts the pre-set context off from what follows, and a disruptor component carrying the attacker's objective, and refines them from the application's responses. They report that it succeeded against 31 of 36 applications, with ten vendors, including Notion, confirming the findings, and they identify two consequences: prompt leaking, which lets others copy an application from its exposed prompt, and prompt abuse, in which an attacker uses the provider's LLM at the provider's expense.
 
+### A formal framework
+
+The study [[ScholarlyArticle/formalizing-and-benchmarking-prompt-injection-attacks-and-defenses|"Formalizing and Benchmarking Prompt Injection Attacks and Defenses"]] (Yupei Liu et al.), which argues that earlier work consisted mostly of case studies, proposes a framework to formalise prompt injection against LLM-integrated applications. An application completes a *target task* by querying the model with an instruction prompt and data, and the data often comes from an external source the attacker can manipulate. In the paper's definition, a prompt injection attack modifies that data so that the application accomplishes an attacker-chosen *injected task* instead of the target task. Different attacks are then different ways of building the compromised data from the target data and the injected task's instruction and data; the authors show that existing attacks are special cases and design a new one by combining them:
+
+| Attack | How it builds the compromised data |
+| --- | --- |
+| Naive Attack | Appends the injected instruction and data to the target data |
+| Escape Characters | Inserts a special character such as a newline first, so the model thinks the context has changed |
+| Context Ignoring | Inserts a text telling the model to ignore its previous instructions |
+| Fake Completion | Inserts a fake response to the target task, so the model believes that task is finished |
+| Combined Attack | Combines escape characters, a fake response and a task-ignoring text |
+
+Benchmarking these five attacks with 10 LLMs and 7 natural-language tasks, the authors found all of them effective, with Combined Attack the most successful; averaged over all models and task combinations, it achieved the injected task's goal at an attack success value of 0.62. They also found Combined Attack more effective against larger models, which they suspect is because larger models are better at following instructions.
+
 ## How it differs from jailbreaking
 
 Simon Willison distinguished prompt injection from jailbreaking: jailbreaking bypasses an AI model's safeguards, whereas prompt injection exploits its inability to tell system instructions from user inputs. Some prompt injection attacks involve jailbreaking, but the two remain distinct techniques.
@@ -77,6 +95,8 @@ Simon Willison distinguished prompt injection from jailbreaking: jailbreaking by
 Version 1.1 of the OWASP Top 10 for LLM Applications (2023) draws the line differently: it describes direct prompt injections as "also known as 'jailbreaking'", occurring when a malicious user overwrites or reveals the underlying system prompt.
 
 The 2025 edition of the OWASP list treats the two as related concepts that are often used interchangeably, and places jailbreaking inside prompt injection: prompt injection manipulates model responses through specific inputs to alter the model's behaviour, which can include bypassing safety measures, while jailbreaking is a form of prompt injection in which the attacker's inputs make the model disregard its safety protocols entirely. According to that entry, developers can build safeguards into system prompts and input handling to help mitigate prompt injection, but effective prevention of jailbreaking requires ongoing updates to the model's training and safety mechanisms.
+
+The formal-framework study by Yupei Liu et al. distinguishes the two by their goal: jailbreaking perturbs a prompt that the model refuses because its task is unsafe, so that the model performs that task, whereas prompt injection makes the model perform an attacker-injected task instead of the intended one, and that task may be safe or unsafe. See also [[DefinedTerm/jailbreak-prompt]].
 
 ## In the OWASP Top 10 for LLM Applications
 
@@ -152,7 +172,7 @@ Cybersecurity agencies including the UK National Cyber Security Centre (NCSC) an
 
 ## Mitigation
 
-Mitigation strategies include input and output filtering, prompt evaluation, reinforcement learning from human feedback, and prompt engineering that separates user input from system instructions. OWASP outlines further techniques: least-privilege access, human oversight for sensitive operations, isolating external content, and adversarial testing with tools such as garak. OWASP notes that prompt injection remains a persistent challenge, as methods such as retrieval-augmented generation (RAG) and fine-tuning do not eliminate the threat.
+Mitigation strategies include input and output filtering, prompt evaluation, reinforcement learning from human feedback, and prompt engineering that separates user input from system instructions. OWASP outlines further techniques: least-privilege access, human oversight for sensitive operations, isolating external content, and adversarial testing. Adversarial testing to identify vulnerabilities can be conducted with tools such as garak. OWASP notes that prompt injection remains a persistent challenge, as methods such as retrieval-augmented generation (RAG) and fine-tuning do not eliminate the threat.
 
 | Approach | What it involves |
 | --- | --- |
@@ -186,3 +206,19 @@ Version 1.1 of the OWASP Top 10 for LLM Applications states that prompt injectio
 Drawing on EchoLeak, Reddy and Gujral argue that single-layer defences fail under modest adversarial pressure — in that case an injection classifier, link redaction and a content security policy were each bypassed — and recommend defence in depth: strict prompt partitioning that tags external content as non-authoritative, provenance-based access control that defaults to internal sources, input filtering, validation of model output before it is rendered, restrictive content security policies, and continuous red-teaming.
 
 Liu et al. state that there were no systematic techniques for preventing prompt injection in LLM-integrated applications, only empirically proposed strategies. They implemented six of them — instruction defence, post-prompting (placing the user's input before the prompt), random sequence enclosure, sandwich defence, XML tagging and separate LLM evaluation — and report that on manual inspection their HouYi technique could effectively circumvent these measures.
+
+The formal-framework study by Yupei Liu et al. benchmarked 10 existing defences against its Combined Attack and concluded that none was sufficient. It divides them into prevention-based defences, which redesign the instruction prompt or pre-process the data so the target task is still done, and detection-based defences, which decide whether data is compromised:
+
+| Defence | Category | Finding |
+| --- | --- | --- |
+| Paraphrasing the data | Prevention | Lowered attack success in some cases, but also cut performance on the target task when there was no attack, by 0.14 on average |
+| Retokenization | Prevention | Ineffective, because randomly dropping tokens fails to remove the injected instruction, and it costs utility on clean data |
+| Delimiters around the data | Prevention | Left attacks largely effective and cost utility by changing the structure of clean data |
+| Sandwich prevention (repeating the task after the data) | Prevention | Left attacks largely effective and lowered performance on some tasks, such as summarisation, where the extra instruction was treated as data |
+| Instructional prevention (telling the model to ignore instructions in the data) | Prevention | Left attacks largely effective |
+| Perplexity-based detection, whole or windowed | Detection | Missed most attacks, because compromised data still reads as good-quality text |
+| Naive LLM-based detection | Detection | Missed few attacks but flagged large fractions of clean data |
+| Response-based detection | Detection | Worked only when the target task was a classification task different from the injected task |
+| Known-answer detection | Detection | The most effective against Combined Attack, but missed a large fraction of compromised data in many other cases |
+
+The authors also note that the literature lacks ways to recover clean data once an attack is detected, so that detection alone still leaves the application unable to complete its task.

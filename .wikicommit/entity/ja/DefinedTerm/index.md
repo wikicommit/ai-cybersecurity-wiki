@@ -1,0 +1,33 @@
+---
+title: "DefinedTerm"
+lang: ja
+type: "schema:DefinedTerm"
+review_status: reviewed
+comments: false
+---
+
+- [[DefinedTerm/adversarial-example]]
+- [[DefinedTerm/adversarial-machine-learning]]
+- [[DefinedTerm/ai-agent]]
+- [[DefinedTerm/anomaly-detection]]
+- [[DefinedTerm/artificial-intelligence-safety-institute]]
+- [[DefinedTerm/audio-deepfake]]
+- [[DefinedTerm/backdoor-attack]]
+- [[DefinedTerm/backdoor-defense]]
+- [[DefinedTerm/data-poisoning]]
+- [[DefinedTerm/differential-privacy]]
+- [[DefinedTerm/evasion-attack]]
+- [[DefinedTerm/excessive-agency]]
+- [[DefinedTerm/fuzzing]]
+- [[DefinedTerm/improper-output-handling]]
+- [[DefinedTerm/intrusion-detection-system]]
+- [[DefinedTerm/jailbreak-prompt]]
+- [[DefinedTerm/llm-misinformation]]
+- [[DefinedTerm/llm-supply-chain-vulnerabilities]]
+- [[DefinedTerm/malware-analysis]]
+- [[DefinedTerm/membership-inference-attack]]
+- [[DefinedTerm/model-context-protocol]]
+- [[DefinedTerm/model-extraction]]
+- [[DefinedTerm/phishing]]
+- [[DefinedTerm/prompt-injection]]
+- [[DefinedTerm/red-team]]
