@@ -41,3 +41,5 @@ comments: false
 - [[DefinedTerm/user-behavior-analytics]]
 - [[DefinedTerm/vector-and-embedding-weaknesses]]
 - [[DefinedTerm/voice-phishing]]
+- [[DefinedTerm/vulnerability-computer-security]]
+- [[DefinedTerm/zero-day-vulnerability]]
