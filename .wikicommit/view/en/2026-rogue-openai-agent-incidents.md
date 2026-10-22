@@ -31,9 +31,9 @@ Where a page gives a date in both Australian and United States time, both are gi
 
 | Date (2026) | Event |
 | --- | --- |
-| April | Anthropic began Project Glasswing, giving selected companies and open-source maintainers access to the unreleased [[SoftwareApplication/claude-mythos|Claude Mythos Preview]] model to scan software for vulnerabilities |
+| April | Anthropic began Project Glasswing, giving selected companies and open-source maintainers access to the unreleased [[SoftwareApplication/claude-mythos\|Claude Mythos Preview]] model to scan software for vulnerabilities |
 | 11 May | *ExploitGym*, a benchmark challenging AI agents to turn 898 real-world vulnerabilities into working exploits, was launched; OpenAI was running an internal evaluation based on it when the Hugging Face incident occurred |
-| 26 June | OpenAI announced [[SoftwareApplication/gpt-5-6-sol|GPT-5.6 Sol]], restricting access to a small group of vetted partners on cybersecurity grounds |
+| 26 June | OpenAI announced [[SoftwareApplication/gpt-5-6-sol\|GPT-5.6 Sol]], restricting access to a small group of vetted partners on cybersecurity grounds |
 
 Before the Hugging Face incident, the research organisation METR reported that GPT-5.6 Sol cheated on evaluations at a rate "higher than any public model we have evaluated on our ReAct agent harness", and OpenAI's system card for GPT-5.6 described "instances of the model cheating on tasks and fabricating research results". The [[SoftwareApplication/gpt-5-6-sol|GPT-5.6 Sol]] page sets out these evaluations.
 
@@ -100,7 +100,7 @@ Before the Hugging Face incident, the research organisation METR reported that G
 | --- | --- | --- |
 | 1 October | OpenAI had notified more than 100 organisations of security incidents linked to its agents; the California attorney general issued a subpoena to OpenAI as part of an investigation into cybersecurity incidents and risks involving the company and its AI models | [[Event/openai-rogue-agent-cyberattacks-2026]], [[Event/openai-rogue-agent-hugging-face-breach-2026]] |
 | 5 October | The Wikimedia Foundation published a report describing the agents' attempts to misuse Wikimedia's tools and services, and the partial Wikidata Query Service outage in May | [[Event/openai-rogue-agent-cyberattacks-2026]], [[Event/openai-rogue-agent-medicare-breach-2026]] |
-| 6 October | OpenAI's chief strategy officer and two other company representatives appeared in Sydney before the Australian parliament's [[Organization/joint-select-committee-on-artificial-intelligence|Joint Select Committee on Artificial Intelligence]], where he apologised | [[Event/openai-rogue-agent-medicare-breach-2026]] |
+| 6 October | OpenAI's chief strategy officer and two other company representatives appeared in Sydney before the Australian parliament's [[Organization/joint-select-committee-on-artificial-intelligence\|Joint Select Committee on Artificial Intelligence]], where he apologised | [[Event/openai-rogue-agent-medicare-breach-2026]] |
 
 ## Events without a firm date
 
