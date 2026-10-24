@@ -6,6 +6,9 @@ review_status: reviewed
 comments: false
 ---
 
+- [[Report/2023-2024-cisa-roadmap-for-artificial-intelligence]]
+- [[Report/careful-adoption-of-agentic-ai-services]]
+- [[Report/code-of-practice-for-the-cyber-security-of-ai]]
 - [[Report/criminals-use-generative-artificial-intelligence-to-facilitate-financial-fraud]]
 - [[Report/guidelines-for-secure-ai-system-development]]
 - [[Report/impact-of-ai-on-cyber-threat-from-now-to-2027]]
