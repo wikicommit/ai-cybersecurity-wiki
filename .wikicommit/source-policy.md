@@ -32,8 +32,9 @@ wikicommit:
 
 This wiki is published. Register a source only when its terms allow an adaptation of it to
 be published: Creative Commons Attribution (CC BY) or Attribution-ShareAlike (CC BY-SA),
-a work of the United States federal government, or the UK Open Government Licence v3.0.
-Do not register a source that reserves all rights, forbids adaptation (ND), restricts use
+a work of the United States federal government, the UK Open Government Licence v3.0,
+the CC0 public domain dedication, or the Apache License 2.0 (record the copyright holder
+named in its notice alongside the licence). Do not register a source that reserves all rights, forbids adaptation (ND), restricts use
 to non-commercial purposes (NC), or whose terms could not be found — even when the page
 would only summarise it. For arXiv, read the licence link on the abs page; the arXiv default
 licence is not an open licence.
